@@ -1,0 +1,23 @@
+{
+  "name": "musicians",
+  "description": "This project draws a timeline comparing life of different musicians",
+  "main": "app.js",
+  "authors": [
+    "striderjack"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "musicians",
+    "lifetime",
+    "timeline"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

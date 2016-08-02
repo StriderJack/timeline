@@ -1,0 +1,16 @@
+{
+  "name": "musicians",
+  "version": "1.0.0",
+  "description": "This project draws a timeline comparing life of different musicians",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "musicians",
+    "lifetime",
+    "timeline"
+  ],
+  "author": "striderjack",
+  "license": "MIT"
+}
