@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <title>Musicians</title>
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+  <!-- endbower -->
+</head>
+<body>
+  <div class="container" ng-controller="TimelineController as vm">
+    <div class="page-header">
+      <h1>Musicians <small>Timeline</small></h1>
+    </div>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Birth</th>
+            <th>Death</th>
+            <th>% Begin</th>
+            <th>% Lifetime</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tl-entity ng-repeat="entity in vm.entities" entity="entity"></tl-entity>
+        </tbody>
+      </table>
+
+      <p>
+        {{ vm.data | json }}
+      </p>
+    </div>
+  </div>
+
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- endbower -->
+
+  <script src="app/app.module.js"></script>
+  <script src="app/core/core.module.js"></script>
+  <script src="app/timeline/timeline.module.js"></script>
+  <script src="app/entity/entity.module.js"></script>
+  <script src="app/timeline/timeline.controller.js"></script>
+  <script src="app/entity/entity.controller.js"></script>
+  <script src="app/core/constants.js"></script>
+
+</body>
+</html>
