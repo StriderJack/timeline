@@ -5,6 +5,7 @@
   angular
       .module('app.core')
       .constant('events', {
-        COMPUTED: 'COMPUTED'
+        COMPUTED: 'COMPUTED',
+        ENTITY_READY: 'ENTITY_READY'
       });
 })();

@@ -1,7 +1,7 @@
-<tr ng-controller="EntityController as vm">
-  <td>{{ vm.name }}</td>
-  <td>{{ vm.birth | date }}</td>
-  <td>{{ vm.death | date }}</td>
-  <td>{{ vm.beginingPc }} % </td>
-  <td>{{ vm.lifetimePc }} % </td>
-</tr>
+<div ng-controller="EntityController as vmEntity">
+  <div>{{ vmEntity.name }}</div>
+  <div>{{ vmEntity.birth | date }}</div>
+  <div>{{ vmEntity.death | date }}</div>
+  <div>{{ vmEntity.beginingPc }} % </div>
+  <div>{{ vmEntity.lifetimePc }} % </div>
+</div>
