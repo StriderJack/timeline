@@ -26,14 +26,19 @@
     "font-awesome": "^4.6.3",
     "angular-animate": "^1.5.8",
     "angular-bootstrap": "^2.0.1",
-    "highcharts": "^4.2.6",
-    "highcharts-ng": "^0.0.11"
+    "d3": "3",
+    "d3-timeline": "^0.0.5"
   },
   "overrides": {
     "bootstrap": {
       "main": [
         "dist/css/bootstrap.min.css",
         "dist/js/bootstrap.min.js"
+      ]
+    },
+    "d3": {
+      "main": [
+        "d3.min.js"
       ]
     },
     "font-awesome": {

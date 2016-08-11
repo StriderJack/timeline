@@ -3,6 +3,6 @@
 
   angular
     .module('app.core', [
-      'ui.bootstrap', 'highcharts-ng'
+      'ui.bootstrap'
     ]);
 })();

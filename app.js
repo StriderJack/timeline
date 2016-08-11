@@ -16,6 +16,8 @@ app.use(logger('dev'));
 
 app.use(express.static(__dirname));
 app.use('/', express.static(__dirname + '/index.html'));
+app.use('/test', express.static(__dirname + '/test.html'));
+app.use('/test2', express.static(__dirname + '/test2.html'));
 
 console.log('About to crank up node');
 console.log('PORT=' + port);

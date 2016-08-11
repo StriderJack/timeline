@@ -18,23 +18,24 @@
         {{ vm.data | json }}
       </p>
       <div ng-repeat="entity in vm.entities" ng-controller="EntityController as vmEntity">
-        <div>{{ vmEntity.name }}</div>
-        <div>{{ vmEntity.birth | date }}</div>
-        <div>{{ vmEntity.death | date }}</div>
-        <div>{{ vmEntity.beginingPc }} % </div>
-        <div>{{ vmEntity.lifetimePc }} % </div>
-        <uib-progress>
-          <uib-bar value="vmEntity.beginingPc" type="success">
-            <span ng-hide="vmEntity.beginingPc < 5">{{vmEntity.beginingPc}}%</span>
-          </uib-bar>
-          <uib-bar value="vmEntity.lifetimePc" type="info">
-            <span ng-hide="vmEntity.lifetimePc < 5">{{vmEntity.lifetimePc}}%</span>
-          </uib-bar>
-        </uib-progress>
+        <div class="col-md-1">{{ vmEntity.name }}</div>
+        <div class="col-md-11">
+          <uib-progress>
+            <uib-bar value="vmEntity.beginingPc" type="info">
+              <!-- <span ng-hide="vmEntity.beginingPc < 5">{{vmEntity.beginingPc}}%</span> -->
+            </uib-bar>
+            <uib-bar value="vmEntity.lifetimePc" type="success">
+              <!-- <span ng-hide="vmEntity.lifetimePc < 5">{{vmEntity.lifetimePc}}%</span> -->
+            </uib-bar>
+            <uib-bar value="100 - (vmEntity.lifetimePc + vmEntity.beginingPc)" type="info">
+              <!-- <span ng-hide="vmEntity.lifetimePc < 5">{{vmEntity.lifetimePc}}%</span> -->
+            </uib-bar>
+          </uib-progress>
+        </div>
       </div>
     </div>
     <div class="row">
-      <highchart id="chart1" config="vm.chartConfig"></highchart>
+      <tl-visualisation data="vm.computedData"></tl-visualisation>
     </div>
   </div>
 
@@ -44,20 +45,18 @@
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-  <script src="bower_components/highcharts/highcharts.js"></script>
-  <script src="bower_components/highcharts/highcharts-more.js"></script>
-  <script src="bower_components/highcharts/modules/exporting.js"></script>
-  <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+  <script src="bower_components/d3/d3.min.js"></script>
+  <script src="bower_components/d3-timeline/src/d3-timeline.js"></script>
   <!-- endbower -->
 
   <script src="app/app.module.js"></script>
   <script src="app/core/core.module.js"></script>
   <script src="app/timeline/timeline.module.js"></script>
   <script src="app/entity/entity.module.js"></script>
-  <script src="app/timeline/timeline.controller.js"></script>
-  <script src="app/entity/entity.controller.js"></script>
-  <script src="app/entity/entity.directive.js"></script>
   <script src="app/core/constants.js"></script>
+  <script src="app/timeline/timeline.controller.js"></script>
+  <script src="app/timeline/timeline.directive.js"></script>
+  <script src="app/entity/entity.controller.js"></script>
 
 </body>
 </html>

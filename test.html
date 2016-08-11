@@ -1,0 +1,183 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Categorized Timeline Using Dates</title>
+  <meta charset="utf-8" />
+  <style type="text/css">
+    svg {
+      height: 1100px;
+      width: 1100px;
+    }
+    div.viz {
+      height: 1000px;
+      width: 1000px;
+    }
+  </style>
+</head>
+
+<script src="bower_components/d3/d3.min.js" charset="utf-8" type="text/javascript"></script>
+<script src="node_modules/d3-layout-timeline/d3.layout.timeline.js" charset="utf-8" type="text/javascript"></script>
+
+<script>
+
+  types = ["European","Native","Colonial","Latin America","Internal"];
+
+  colorScale = d3.scale.ordinal()
+    .domain(types)
+    .range(["#96abb1", "#313746", "#b0909d", "#687a97", "#292014"]);
+
+  d3.csv("wars.csv", function (csv) {
+    var timeline = d3.layout.timeline()
+      .size([500,80])
+      .extent(["7/4/1776", "12/31/1876"])
+      .padding(3)
+      .maxBandHeight(20);
+
+    types.forEach(function (type, i) {
+      onlyThisType = csv.filter(function(d) {return d.sphere === type});
+
+      theseBands = timeline(onlyThisType);
+
+      d3.select("svg").append("g")
+        .attr("transform", "translate(100," + (35 + (i * 90)) + ")")
+        .selectAll("rect")
+        .data(theseBands)
+        .enter()
+        .append("rect")
+        .attr("rx", 2)
+        .attr("x", function (d) {return d.start})
+        .attr("y", function (d) {return d.y})
+        .attr("height", function (d) {return d.dy})
+        .attr("width", function (d) {return d.end - d.start})
+        .style("fill", function (d) {return colorScale(d.sphere)});
+
+      d3.select("svg").append("text")
+        .text(type)
+        .attr("y", 50 + (i * 90))
+        .attr("x", 20)
+
+      });
+  });
+
+</script>
+<body>
+  <div id="viz">
+    <svg style="background:white;" height=1100 width=1100>
+    </svg>
+  </div>
+  <footer>
+  </footer>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+</style>
+<body>
+<script src="bower_components/d3/d3.min.js"></script>
+<script>
+var data = [
+  {
+    name: 'Bob Dylan',
+    birth: new Date('1941', '04', '24'),
+    death: new Date(Date.now())
+  },
+  {
+    name: 'Joan Baez',
+    birth: new Date('1941', '00', '09'),
+    death: new Date(Date.now())
+  },
+  {
+    name: 'Sting',
+    birth: new Date('1951', '09', '02'),
+    death: new Date(Date.now())
+  },
+  {
+    name: 'Mark Knopfler',
+    birth: new Date('1949', '07', '12'),
+    death: new Date(Date.now())
+  },
+  {
+    name: 'Janis Joplin',
+    birth: new Date('1943', '00', '19'),
+    death: new Date('1970', '09', '04')
+  },
+  {
+    name: 'Beethoven',
+    birth: new Date('1770', '11', '17'),
+    death: new Date('1827', '02', '26')
+  }
+];
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.time.scale()
+  .domain([d3.min(data, function(d) { return d.birth; }), d3.max(data, function(d) { return d.death; })])
+  .range([0, width]);
+var y = d3.scale.ordinal()
+  .domain(data.map(function(d) { return d.name; }))
+  .rangeRoundBands([height, 0], .2);
+
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .ticks(d3.time.years);
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+svg.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(0," + width + ")")
+    .call(yAxis);
+
+svg.selectAll(".bar")
+    .data(data)
+  .enter().append("rect")
+    .attr("class", "bar")
+    .attr("x", function(d) { return x(d.death.getTime()); })
+    .attr("width", function(d) { return width - x(d.death); })
+    .attr("y", function(d) { return y(d.name); })
+    .attr("height", y.rangeBand());
+
+</script>
+-->
